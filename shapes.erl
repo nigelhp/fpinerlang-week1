@@ -10,7 +10,7 @@
 -include_lib("eunit/include/eunit.hrl").
 
 perimeter({rectangle, {_,_}, H, W}) ->
-    H*2+W*2;
+    (H+W)*2;
 perimeter({circle, {_,_}, R}) ->
     2*math:pi()*R;    % circumference
 perimeter({triangle, {_,_}, A, B, C}) ->
@@ -22,17 +22,18 @@ area({rectangle, {_,_}, H, W}) ->
 area({circle, {_,_}, R}) ->
     math:pi()*R*R;
 area({triangle, {_,_}, A, B, C}) ->
+    % Heron's formula
     S=(A+B+C)/2,
-    math:sqrt(S*(S-A)*(S-B)*(S-C)).    % Heron's formula
+    math:sqrt(S*(S-A)*(S-B)*(S-C)).
 
 
-enclose({rectangle, {X,Y}, H, W}) ->
-    {rectangle, {X,Y}, H, W};
+enclose(S={rectangle, {_,_}, _, _}) ->
+    S;
 enclose({circle, {X,Y}, R}) ->
     D=R*2,
     {rectangle, {X,Y}, D, D};
-enclose({triangle, {X,Y}, A, B, C}) ->
-    H=area({triangle, {X,Y}, A, B, C})*2/B,
+enclose(S={triangle, {X,Y}, _, B, _}) ->
+    H=area(S)*2/B,
     {rectangle, {X,Y}, H, B}.
 
 
