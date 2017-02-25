@@ -1,4 +1,5 @@
-### Functional Programming in Erlang: Week 1 Assignment
+##### FutureLearn / University of Kent: Functional Programming in Erlang
+### Week 1 Assignment
 
 ##### Shapes
 Define a function perimeter/1 which takes a shape and returns the perimeter of the shape.
