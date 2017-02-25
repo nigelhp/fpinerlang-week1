@@ -28,23 +28,23 @@ trbits(N,S) when N>0 ->
 
 % execute unit-tests from erl shell with: 'bits:test().'
 bits_test_() ->
-    [?_assert(bits(0) =:= 0),
-     ?_assert(bits(1) =:= 1),
-     ?_assert(bits(2) =:= 1),
-     ?_assert(bits(3) =:= 2),
-     ?_assert(bits(4) =:= 1),
-     ?_assert(bits(5) =:= 2),
-     ?_assert(bits(6) =:= 2),
-     ?_assert(bits(7) =:= 3),
-     ?_assert(bits(8) =:= 1)].
+    [?_assertEqual(bits(0), 0),
+     ?_assertEqual(bits(1), 1),
+     ?_assertEqual(bits(2), 1),
+     ?_assertEqual(bits(3), 2),
+     ?_assertEqual(bits(4), 1),
+     ?_assertEqual(bits(5), 2),
+     ?_assertEqual(bits(6), 2),
+     ?_assertEqual(bits(7), 3),
+     ?_assertEqual(bits(8), 1)].
 
 trbits_test_() ->
-    [?_assert(trbits(0) =:= 0),
-     ?_assert(trbits(1) =:= 1),
-     ?_assert(trbits(2) =:= 1),
-     ?_assert(trbits(3) =:= 2),
-     ?_assert(trbits(4) =:= 1),
-     ?_assert(trbits(5) =:= 2),
-     ?_assert(trbits(6) =:= 2),
-     ?_assert(trbits(7) =:= 3),
-     ?_assert(trbits(8) =:= 1)].
+    [?_assertEqual(trbits(0), 0),
+     ?_assertEqual(trbits(1), 1),
+     ?_assertEqual(trbits(2), 1),
+     ?_assertEqual(trbits(3), 2),
+     ?_assertEqual(trbits(4), 1),
+     ?_assertEqual(trbits(5), 2),
+     ?_assertEqual(trbits(6), 2),
+     ?_assertEqual(trbits(7), 3),
+     ?_assertEqual(trbits(8), 1)].
