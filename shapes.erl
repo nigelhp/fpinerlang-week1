@@ -6,7 +6,7 @@
 % enclosing rectangle of the shape.
 
 -module(shapes).
--export([perimeter/1,area/1]).
+-export([perimeter/1,area/1,enclose/1]).
 
 perimeter({rectangle, {_,_}, H, W}) ->
     H*2+W*2;
@@ -41,3 +41,18 @@ area({triangle, {_,_}, A, B, C}) ->
 % shapes:area({triangle, {0,0}, 1, 1, 1}). ~ 0.43301
 % shapes:area({triangle, {0,0}, 2, 1, 2}). ~ 0.96825
 % shapes:area({triangle, {0,0}, 3, 4, 5}). == 6.0 
+
+
+enclose({rectangle, {X,Y}, H, W}) ->
+    {rectangle, {X,Y}, H, W};
+enclose({circle, {X,Y}, R}) ->
+    D=R*2,
+    {rectangle, {X,Y}, D, D};
+enclose({triangle, {X,Y}, A, B, C}) ->
+    H=area({triangle, {X,Y}, A, B, C})*2/B,
+    {rectangle, {X,Y}, H, B}.
+
+% examples:
+% shapes:enclose({rectangle, {0,0}, 3, 4}). == {rectangle, {0,0}, 3, 4}
+% shapes:enclose({circle, {0,0}, 1}). == {rectangle, {0,0}, 2, 2}
+% shapes:enclose({triangle, {0,0}, 3, 4, 5}). == {rectangle, {0,0}, 3.0, 4}
