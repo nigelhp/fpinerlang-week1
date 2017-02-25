@@ -6,7 +6,7 @@
 % enclosing rectangle of the shape.
 
 -module(shapes).
--export([perimeter/1]).
+-export([perimeter/1,area/1]).
 
 perimeter({rectangle, {_,_}, H, W}) ->
     H*2+W*2;
@@ -23,3 +23,21 @@ perimeter({triangle, {_,_}, A, B, C}) ->
 % shapes:perimeter({triangle, {0,0}, 1, 1, 1}). == 3
 % shapes:perimeter({triangle, {0,0}, 2, 1, 2}). == 5
 % shapes:perimeter({triangle, {0,0}, 3, 4, 5}). == 12
+
+
+area({rectangle, {_,_}, H, W}) ->
+    H*W;
+area({circle, {_,_}, R}) ->
+    math:pi()*R*R;
+area({triangle, {_,_}, A, B, C}) ->
+    S=(A+B+C)/2,
+    math:sqrt(S*(S-A)*(S-B)*(S-C)).    % Heron's formula
+
+% examples:
+% shapes:area({rectangle, {0,0}, 1, 1}). == 1
+% shapes:area({rectangle, {0,0}, 3, 4}). == 12
+% shapes:area({circle, {0,0}, 1}). ~ 3.14159
+% shapes:area({circle, {0,0}, 6}). ~ 113.09734
+% shapes:area({triangle, {0,0}, 1, 1, 1}). ~ 0.43301
+% shapes:area({triangle, {0,0}, 2, 1, 2}). ~ 0.96825
+% shapes:area({triangle, {0,0}, 3, 4, 5}). == 6.0 
